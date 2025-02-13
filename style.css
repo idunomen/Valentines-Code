@@ -1,0 +1,113 @@
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --heart-size: 20px;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffe5e5;
+    position: relative; /* To allow absolute positioning of hearts */
+    overflow: hidden; /* To prevent hearts from going out of view */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 20px;
+    max-width: 500px;
+    margin: 20px;
+    z-index: 10; /* Make sure content stays above hearts */
+}
+h1{
+    font-size: 25px;
+    font-weight: 500;
+  margin-bottom: 20px;
+}
+.container .tenor-gif-embed {
+     /* Maintain aspect ratio */
+    max-width: 600px;
+}
+
+.container .btn {
+    display: flex;
+    justify-content: center;  /* Center the button */
+    gap: 20px;
+}
+
+.btn a {
+    text-decoration: none;
+  color: #fff;
+  background: #FF6F61; /* Warm color */
+  padding: 12px 30px;
+  border-radius: 50px;  /* Rounded corners */
+  font-size: 1.2rem;  /* Slightly larger text */
+  font-weight: bold;
+  text-transform: uppercase; /* Uppercase text */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+.btn a:hover {
+    background: #FF4B3A; /* Darker shade on hover */
+    transform: translateY(-3px); /* Lift the button slightly */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+  }
+  
+  /* Optional: Add focus styles for accessibility */
+  .btn a:focus {
+    outline: 3px solid #FF6F61;
+  }
+
+.heart {
+    position: fixed;  /* Keep hearts above content */
+    width: var(--heart-size);
+    height: var(--heart-size);
+    background: red;
+    transform: rotate(45deg);
+    animation: fall 3s linear infinite;
+    pointer-events: none;  /* Prevent hearts from interfering with clicks */
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: var(--heart-size);
+    height: var(--heart-size);
+    background: red;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: -10px;
+}
+
+@keyframes fall {
+    0% {
+        top: -50px;
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;  /* Allow the heart to fall completely off screen */
+        opacity: 0;
+        transform: rotate(90deg);
+    }
+}
